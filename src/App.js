@@ -68,6 +68,11 @@ class App extends Component {
     })
   }
 
+  isFormValid () {
+    const {city, firstName, lastName, phone, email, cities} = this.state;
+    return city && cities.indexOf(city) !== -1 && firstName && lastName && phone && email;
+  }
+
   render() {
     const { cities, city, step, firstName, lastName, phone, email } = this.state;
     return (
@@ -91,7 +96,7 @@ class App extends Component {
                 <TextField hintText="Phone" onChange={this.updatePhone} value={phone} />
                 <TextField hintText="E-mail" onChange={this.updateEmail} value={email} />
                 <RaisedButton label="Back" primary={false} style={{ display: 'block', margin: 15 }} onClick={this.backStep} />
-                <RaisedButton label="Confirm" primary={true} style={{ display: 'block', margin: 15 }} onClick={this.sendUserData} />
+                <RaisedButton label="Confirm" primary={true} style={{ display: 'block', margin: 15 }} onClick={this.sendUserData} disabled={!this.isFormValid()} />
               </form>}
         </Paper>
       </MuiThemeProvider>
