@@ -69,8 +69,13 @@ class App extends Component {
   }
 
   isFormValid () {
-    const {city, firstName, lastName, phone, email, cities} = this.state;
-    return city && cities.indexOf(city) !== -1 && firstName && lastName && phone && email;
+    const {city, cities, firstName, lastName, phone, email} = this.state;
+    return this.isCityValid() && firstName && lastName && phone && email;
+  }
+
+  isCityValid () {
+    const {city, cities} = this.state;
+    return city && cities.indexOf(city) !== -1;
   }
 
   render() {
@@ -88,7 +93,7 @@ class App extends Component {
                   style={{ display: 'block', margin: 15 }}
                   searchText={city}
                 />
-                <RaisedButton label="Next" primary={true} style={{ display: 'block', margin: 15 }} onClick={this.nextStep} />
+                <RaisedButton label="Next" primary={true} style={{ display: 'block', margin: 15 }} onClick={this.nextStep} disabled={!this.isCityValid()}/>
               </form>
             : <form style={containerStyles}>
                 <TextField hintText="First Name" onChange={this.updateFirstName} value={firstName} />
