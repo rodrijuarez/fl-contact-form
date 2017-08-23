@@ -26,7 +26,7 @@ const paperStyles = {
   };
 
 class App extends Component {
-  state = { cities: [], searchText: '', step: 'First', firstName: '', lastName: '', phone: '', email: '' };
+  state = { cities: [], city: '', step: 'First', firstName: '', lastName: '', phone: '', email: '' };
 
   handleUpdateInput = searchText => {
     if (!searchText) return;
@@ -48,13 +48,13 @@ class App extends Component {
 
   backStep = () => this.setState({ step: 'First' });
 
-  updateFirstName = (event) => this.setState({firstName: event.target.value})
+  updateFirstName = event => this.setState({ firstName: event.target.value });
 
-  updateLastName = (event) => this.setState({lastName: event.target.value})
+  updateLastName = event => this.setState({ lastName: event.target.value });
 
-  updatePhone = (event) => this.setState({phone: event.target.value})
+  updatePhone = event => this.setState({ phone: event.target.value });
 
-  updateEmail = (event) => this.setState({email: event.target.value})
+  updateEmail = event => this.setState({ email: event.target.value });
 
   render() {
     const { cities, city, step, firstName, lastName, phone, email } = this.state;
@@ -68,16 +68,16 @@ class App extends Component {
                   hintText="Enter your city"
                   dataSource={cities}
                   onUpdateInput={this.handleUpdateInput}
-                  style={{ display: 'block', margin: 15}}
+                  style={{ display: 'block', margin: 15 }}
                   searchText={city}
                 />
-                <RaisedButton label="Next" primary={true} style={{ display: 'block', margin: 15}} onClick={this.nextStep} />
+                <RaisedButton label="Next" primary={true} style={{ display: 'block', margin: 15 }} onClick={this.nextStep} />
               </form>
             : <form style={containerStyles}>
-                <TextField hintText="First Name" onChange={this.updateFirstName} value={firstName}/>
-                <TextField hintText="Last Name" onChange={this.updateLastName} value={lastName}/>
-                <TextField hintText="Phone" onChange={this.updatePhone} value={phone}/>
-                <TextField hintText="E-mail" onChange={this.updateEmail} value={email}/>
+                <TextField hintText="First Name" onChange={this.updateFirstName} value={firstName} />
+                <TextField hintText="Last Name" onChange={this.updateLastName} value={lastName} />
+                <TextField hintText="Phone" onChange={this.updatePhone} value={phone} />
+                <TextField hintText="E-mail" onChange={this.updateEmail} value={email} />
                 <RaisedButton label="Back" primary={false} style={{ display: 'block', margin: 15 }} onClick={this.backStep} />
                 <RaisedButton label="Confirm" primary={true} style={{ display: 'block', margin: 15 }} onClick={this.nextStep} />
               </form>}
