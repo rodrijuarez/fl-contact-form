@@ -26,13 +26,14 @@ const paperStyles = {
   };
 
 class App extends Component {
-  state = { cities: [], step: 'First', firstName: '', lastName: '', phone: '', email: '' };
+  state = { cities: [], searchText: '', step: 'First', firstName: '', lastName: '', phone: '', email: '' };
 
-  handleUpdateInput = value => {
-    if (!value) return;
+  handleUpdateInput = searchText => {
+    if (!searchText) return;
+    this.setState({ city: searchText });
 
     const service = new google.maps.places.AutocompleteService();
-    service.getQueryPredictions({ input: value || '', types: 'cities' }, this.displaySuggestions);
+    service.getQueryPredictions({ input: searchText || '', types: 'cities' }, this.displaySuggestions);
   };
 
   displaySuggestions = (predictions, status) => {
@@ -56,7 +57,7 @@ class App extends Component {
   updateEmail = (event) => this.setState({email: event.target.value})
 
   render() {
-    const { cities, step, firstName, lastName, phone, email } = this.state;
+    const { cities, city, step, firstName, lastName, phone, email } = this.state;
     return (
       <MuiThemeProvider>
         <Paper style={paperStyles}>
@@ -68,6 +69,7 @@ class App extends Component {
                   dataSource={cities}
                   onUpdateInput={this.handleUpdateInput}
                   style={{ display: 'block', margin: 15}}
+                  searchText={city}
                 />
                 <RaisedButton label="Next" primary={true} style={{ display: 'block', margin: 15}} onClick={this.nextStep} />
               </form>
