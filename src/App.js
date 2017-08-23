@@ -89,7 +89,7 @@ class App extends Component {
                 <TextField hintText="Phone" onChange={this.updatePhone} value={phone}/>
                 <TextField hintText="E-mail" onChange={this.updateEmail} value={email}/>
                 <RaisedButton label="Back" primary={false} style={{ display: 'block', margin: 15 }} onClick={this.backStep} />
-                <RaisedButton label="Next" primary={true} style={{ display: 'block', margin: 15 }} onClick={this.nextStep} />
+                <RaisedButton label="Confirm" primary={true} style={{ display: 'block', margin: 15 }} onClick={this.nextStep} />
               </form>}
         </Paper>
       </MuiThemeProvider>
