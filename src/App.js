@@ -43,29 +43,17 @@ class App extends Component {
     this.setState({ cities });
   };
 
-  nextStep = () => {
-    this.setState({ step: 'Second' });
-  };
+  nextStep = () => this.setState({ step: 'Second' });
 
-  backStep = () => {
-    this.setState({ step: 'First' });
-  };
+  backStep = () => this.setState({ step: 'First' });
 
-  updateFirstName = (event) => {
-    this.setState({firstName: event.target.value})
-  }
+  updateFirstName = (event) => this.setState({firstName: event.target.value})
 
-  updateLastName = (event) => {
-    this.setState({lastName: event.target.value})
-  }
+  updateLastName = (event) => this.setState({lastName: event.target.value})
 
-  updatePhone = (event) => {
-    this.setState({phone: event.target.value})
-  }
+  updatePhone = (event) => this.setState({phone: event.target.value})
 
-  updateEmail = (event) => {
-    this.setState({email: event.target.value})
-  }
+  updateEmail = (event) => this.setState({email: event.target.value})
 
   render() {
     const { cities, step, firstName, lastName, phone, email } = this.state;
