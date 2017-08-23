@@ -56,6 +56,18 @@ class App extends Component {
 
   updateEmail = event => this.setState({ email: event.target.value });
 
+  sendUserData = () => {
+    const {city, firstName, lastName, phone, email} = this.state;
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({city, firstName, lastName, phone, email})
+    })
+  }
+
   render() {
     const { cities, city, step, firstName, lastName, phone, email } = this.state;
     return (
@@ -79,7 +91,7 @@ class App extends Component {
                 <TextField hintText="Phone" onChange={this.updatePhone} value={phone} />
                 <TextField hintText="E-mail" onChange={this.updateEmail} value={email} />
                 <RaisedButton label="Back" primary={false} style={{ display: 'block', margin: 15 }} onClick={this.backStep} />
-                <RaisedButton label="Confirm" primary={true} style={{ display: 'block', margin: 15 }} onClick={this.nextStep} />
+                <RaisedButton label="Confirm" primary={true} style={{ display: 'block', margin: 15 }} onClick={this.sendUserData} />
               </form>}
         </Paper>
       </MuiThemeProvider>
